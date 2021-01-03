@@ -37,3 +37,17 @@ class Veiculo(models.Model):
 class Parametros(models.Model):
     valor_hora = models.DecimalField(max_digits=5, decimal_places=2)
     valor_mes = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return 'Parametros Gerais'
+
+
+class MovRotativo(models.Model):
+    checkin = models.DateTimeField(auto_now=False)
+    checkout = models.DateTimeField(auto_now=False, null=True, blank=True)
+    valor_hora = models.DecimalField(max_digits=5, decimal_places=2)
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.SET(get_sentinel_user), )
+    pago = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.veiculo.placa + '-' + self.pago
