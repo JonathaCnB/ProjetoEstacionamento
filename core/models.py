@@ -32,7 +32,7 @@ class Veiculo(models.Model):
     observacoes = models.TextField()
 
     def __str__(self):
-        return self.placa + '-' + self.marca.nome
+        return self.placa + ' - ' + self.marca.nome
 
 
 class Parametros(models.Model):
@@ -58,3 +58,12 @@ class MovRotativo(models.Model):
 
     def __str__(self):
         return self.veiculo.placa
+
+
+class Mensalista(models.Model):
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.SET(get_sentinel_user), )
+    inicio = models.DateField()
+    valor_mes = models.DecimalField(max_digits=6, decimal_places=2)
+
+    def __str__(self):
+        return str(self.veiculo) + ' - ' + str(self.inicio)
