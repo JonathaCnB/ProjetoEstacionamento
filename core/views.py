@@ -1,6 +1,6 @@
 from django.shortcuts import render
 # from django.http import HttpResponse
-from .models import Pessoa, Veiculo, MovRotativo, MovMensalista
+from .models import Pessoa, Veiculo, MovRotativo, Mensalista, MovMensalista
 
 
 def home(request):
@@ -28,5 +28,12 @@ def lista_movrotativos(request):
 
 
 def lista_mensalista(request):
-    mensalista = MovMensalista.objects.all()
-    return render(request, 'core/lista_mensalistas.html', {'mensalista': mensalista})
+    mensalista = Mensalista.objects.all()
+    return render(request, 'core/lista_mensalistas.html',
+                  {'mensalista': mensalista})
+
+
+def lista_mov_mensal(request):
+    mov_mensal = MovMensalista.objects.all()
+    return render(request, 'core/lista_mov_mensal.html',
+                  {'mov_mensal': mov_mensal})

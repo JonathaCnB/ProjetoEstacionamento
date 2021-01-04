@@ -1,0 +1,10 @@
+<h1>Movimentação dos Mensalistas</h1>
+
+<ul>
+
+	{% for movimento in mov_mensal %}
+		<li>{{ movimento.mensalista }} | {{ movimento.dt_pgto }} |
+		    {{ movimento.total }}</li>
+	{% endfor %}
+
+</ul>

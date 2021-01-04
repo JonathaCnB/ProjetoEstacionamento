@@ -3,6 +3,8 @@
 <lu>
 
 	{% for mensalistas in mensalista %}
-		<li>{{ mensalistas.mensalista }} | {{ mensalistas.dt_pgto }} | {{ mensalistas.total }}</li>
+		<li>{{ mensalistas.veiculo }} | {{ mensalistas.inicio }} |
+		    {{ mensalistas.valor_mes }}</li>
 	{% endfor %}
+
 </lu>
