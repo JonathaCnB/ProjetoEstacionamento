@@ -5,3 +5,9 @@
 		<li>{{ veiculo.marca }} | {{ veiculo.placa }} | {{ veiculo.proprietario }}</li>
 	{% endfor %}
 </ul>
+
+<form action=" {% url 'core_veiculos_novo' %}" method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Cadastrar</button>
+</form>

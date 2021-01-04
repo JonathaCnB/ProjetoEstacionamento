@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Pessoa, Veiculo, MovRotativo, Mensalista, MovMensalista
 
 
-from .forms import PessoaForm
+from .forms import PessoaForm, VeiculoForm
 
 
 def home(request):
@@ -30,7 +30,15 @@ def pessoa_novo(request):
 
 def lista_veiculos(request):
     veiculos = Veiculo.objects.all()
-    return render(request, 'core/lista_veiculos.html', {'veiculos': veiculos})
+    form = VeiculoForm()
+    return render(request, 'core/lista_veiculos.html', {'veiculos': veiculos, 'form': form})
+
+
+def veiculo_novo(request):
+    form = VeiculoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_veiculos')
 
 
 def lista_movrotativos(request):
