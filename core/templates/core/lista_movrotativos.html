@@ -1,0 +1,9 @@
+<h1>Movimentos</h1>
+
+<ul>
+
+	{% for movimentos in mov_rotativos %}
+		<li>{{ movimentos.checkout }} | {{ movimentos.veiculo.placa }}</li>
+	{% endfor %}
+
+</ul>

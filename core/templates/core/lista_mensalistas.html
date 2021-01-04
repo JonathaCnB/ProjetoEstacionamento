@@ -1,0 +1,8 @@
+<h1>Lista dos Mensalitas</h1>
+
+<lu>
+
+	{% for mensalistas in mensalista %}
+		<li>{{ mensalistas.mensalista }} | {{ mensalistas.dt_pgto }} | {{ mensalistas.total }}</li>
+	{% endfor %}
+</lu>
