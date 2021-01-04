@@ -10,6 +10,8 @@
 
 <form action="{% url 'core_rotativo_novo' %}" method="POST">
 	{% csrf_token %}
+
 	{{ form.as_p }}
+
 	<button type="submit">Cadastrar</button>
 </form>

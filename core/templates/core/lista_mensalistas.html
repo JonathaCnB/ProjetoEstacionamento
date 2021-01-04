@@ -8,3 +8,11 @@
 	{% endfor %}
 
 </lu>
+
+<form action="{% url 'core_mensalista-novo' %}" method="POST">
+	{% csrf_token %}
+
+	{{ form.as_p}}
+
+	<button type="submit">Cadastrar</button>
+</form>
