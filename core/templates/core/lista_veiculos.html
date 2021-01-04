@@ -2,12 +2,23 @@
 
 <ul>
 	{% for veiculo in veiculos %}
-		<li>{{ veiculo.marca }} | {{ veiculo.placa }} | {{ veiculo.proprietario }}</li>
+		<li>
+			<a href="{% url 'core_veiculo_update' veiculo.id %}">
+			  {{ veiculo.id }} | {{ veiculo.placa }} |
+			  {{ veiculo.proprietario }}
+			</a>
+		</li>
 	{% endfor %}
 </ul>
 
-<form action=" {% url 'core_veiculos_novo' %}" method="POST">
+
+<form action="{% url 'core_veiculo_novo' %}" method="POST">
+
 	{% csrf_token %}
+
 	{{ form.as_p }}
+
 	<button type="submit">Cadastrar</button>
 </form>
+
+<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>

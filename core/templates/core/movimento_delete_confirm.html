@@ -1,0 +1,6 @@
+<h2> Tem certeza que desaja deletar: {{ movimento }}</h2>
+
+<form method="POST" action="{% url 'core_rotativo_delete' movimento.id %}">
+	{% csrf_token %}
+	<button type="submit">Deletar</button>
+</form>

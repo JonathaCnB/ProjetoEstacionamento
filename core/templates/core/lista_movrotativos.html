@@ -2,8 +2,10 @@
 
 <ul>
 
-	{% for movimentos in mov_rotativos %}
-		<li>{{ movimentos.checkout }} | {{ movimentos.veiculo.placa }}</li>
+	{% for movimentos in movimento %}
+		<li><a href="{% url 'core_rotativo_update' movimentos.id %}">
+		{{ movimentos.checkout }} | {{ movimentos.veiculo.placa }}
+		| {{ movimentos.pago }}</a></li>
 	{% endfor %}
 
 </ul>
@@ -15,3 +17,5 @@
 
 	<button type="submit">Cadastrar</button>
 </form>
+
+<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>

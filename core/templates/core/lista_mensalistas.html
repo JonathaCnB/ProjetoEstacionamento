@@ -2,9 +2,10 @@
 
 <lu>
 
-	{% for mensalistas in mensalista %}
-		<li>{{ mensalistas.veiculo }} | {{ mensalistas.inicio }} |
-		    {{ mensalistas.valor_mes }}</li>
+	{% for mens in mensalistas %}
+		<li><a href="{% url 'core_mensalista_update' mens.id %}">
+			 {{ mens.id }} | {{ mens.inicio }} |
+		     {{ mens.valor_mes }}</a></li>
 	{% endfor %}
 
 </lu>
@@ -16,3 +17,5 @@
 
 	<button type="submit">Cadastrar</button>
 </form>
+
+<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>

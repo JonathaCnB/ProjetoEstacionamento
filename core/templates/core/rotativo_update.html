@@ -1,0 +1,11 @@
+<h1>Atualizando: {{ movimentos.veiculo.placa }}</h1>
+
+<form action="{% url 'core_rotativo_update' movimento.id %}" method="POST">
+	{% csrf_token %}
+
+	{{ form.as_p }}
+
+	<button type="submit">Atualizar</button>
+</form>
+
+<a href="{% url 'core_rotativo_delete' movimento.id %}">Deletar</a>

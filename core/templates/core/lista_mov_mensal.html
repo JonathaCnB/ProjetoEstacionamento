@@ -3,8 +3,9 @@
 <ul>
 
 	{% for movimento in mov_mensal %}
-		<li>{{ movimento.mensalista }} | {{ movimento.dt_pgto }} |
-		    {{ movimento.total }}</li>
+		<li><a href="{% url 'core_mov_mensal_update' movimento.id %}">
+			{{ movimento.mensalista }} | {{ movimento.dt_pgto }} |
+		    {{ movimento.total }}</a></li>
 	{% endfor %}
 
 </ul>
@@ -16,3 +17,5 @@
 
 	<button type="submit">Cadastrar</button>
 </form>
+
+<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>

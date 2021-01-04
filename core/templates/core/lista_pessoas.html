@@ -3,7 +3,9 @@
 <ul>
 
 	{% for pessoa in pessoas %}
-		<li>{{ pessoa.nome }}</li>
+
+		<li><a href="{% url 'core_pessoa_update' pessoa.id %}">{{ pessoa.id }} | {{ pessoa.nome }}</a></li>
+
 	{% endfor %}
 
 </ul>
@@ -15,3 +17,5 @@
 
 	<button type="submit">Cadastrar</button>
 </form>
+
+<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
