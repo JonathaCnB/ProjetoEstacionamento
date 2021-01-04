@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Pessoa, Veiculo, MovRotativo, Mensalista, MovMensalista
 
 
-from .forms import PessoaForm, VeiculoForm
+from .forms import PessoaForm, VeiculoForm, RotativoForm
 
 
 def home(request):
@@ -43,8 +43,16 @@ def veiculo_novo(request):
 
 def lista_movrotativos(request):
     mov_rotativos = MovRotativo.objects.all()
+    form = RotativoForm()
     return render(request, 'core/lista_movrotativos.html',
-                  {'mov_rotativos': mov_rotativos})
+                  {'mov_rotativos': mov_rotativos, 'form': form})
+
+
+def rotativo_novo(request):
+    form = RotativoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_movrotativo')
 
 
 def lista_mensalista(request):
