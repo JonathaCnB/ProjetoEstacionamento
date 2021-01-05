@@ -1,11 +1,28 @@
-<h1> Atualizacao Movimento Mensal</h1>
+{% extends 'base.html' %}
+{% load bootstrap %}
 
-<form action="{% url 'core_mov_mensal_update' mov_mensal.id %}" method="POST">
-	{% csrf_token %}
+{% block main %}
 
-	{{form.as_p}}
+<div class="row">
+	<div class="col">
+		<h1> Atualizacao Movimento Mensal</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<form action="{% url 'core_mov_mensal_update' mov_mensal.id %}" method="POST">
+			{% csrf_token %}
 
-	<button type="submit">Atualizar</button>
-</form>
+			{{form|bootstrap}}
 
-<a href="{% url 'core_mov_mensal_delete' mov_mensal.id %}">Deletar</a>
+			<button type="submit" class="btn btn-primary">Atualizar</button>
+
+			<a href="{% url 'core_mov_mensal_delete' mov_mensal.id %}"
+		     class="btn btn-danger">Deletar</a>
+		</form>
+	</div>
+</div>
+
+
+
+{% endblock %}

@@ -1,21 +1,57 @@
-<h1>Lista dos Mensalitas</h1>
+{% extends 'base.html' %}
 
-<lu>
 
-	{% for mens in mensalistas %}
-		<li><a href="{% url 'core_mensalista_update' mens.id %}">
-			 {{ mens.id }} | {{ mens.inicio }} |
-		     {{ mens.valor_mes }}</a></li>
-	{% endfor %}
+{% block menu %}
 
-</lu>
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link " aria-current="page" href="#">Home</a>
+	  </li>
+	  <li class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+	    <ul class="dropdown-menu">
+	      <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Viculos</a></li></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_marcas' %}">Marcas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_movrotativo' %}">Mov. Rotativo</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mensalista' %}">Mensalistas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mov_mensal' %}">Mov. Mensalistas</a></li>
+	      <li><hr class="dropdown-divider"></li>
+	      <li><a class="dropdown-item" href="#">Separated link</a></li>
+	    </ul>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" <a href="/admin/login/?next=/sistema/">Login</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Mensalistas</a>
+	  </li>
+	</ul>
 
-<form action="{% url 'core_mensalista-novo' %}" method="POST">
-	{% csrf_token %}
+{% endblock %}
 
-	{{ form.as_p}}
+{% block main %}
 
-	<button type="submit">Cadastrar</button>
-</form>
+	<h1>Lista dos Mensalitas</h1>
 
-<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+	<lu>
+
+		{% for mens in mensalistas %}
+			<li><a href="{% url 'core_mensalista_update' mens.id %}">
+				 {{ mens.id }} | {{ mens.inicio }} |
+			     {{ mens.valor_mes }}</a></li>
+		{% endfor %}
+
+	</lu>
+
+	<form action="{% url 'core_mensalista-novo' %}" method="POST">
+		{% csrf_token %}
+
+		{{ form.as_p}}
+
+		<button type="submit" class="btn btn-primary">Cadastrar</button>
+	</form>
+
+	<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+
+{% endblock %}

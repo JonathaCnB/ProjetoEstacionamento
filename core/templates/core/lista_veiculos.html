@@ -1,24 +1,58 @@
-<h1> Lista Veiculos </h1>
+{% extends 'base.html' %}
 
-<ul>
-	{% for veiculo in veiculos %}
-		<li>
-			<a href="{% url 'core_veiculo_update' veiculo.id %}">
-			  {{ veiculo.id }} | {{ veiculo.placa }} |
-			  {{ veiculo.proprietario }}
-			</a>
-		</li>
-	{% endfor %}
-</ul>
+{% block menu %}
+
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link " aria-current="page" href="#">Home</a>
+	  </li>
+	  <li class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+	    <ul class="dropdown-menu">
+	      <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Viculos</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_marcas' %}">Marcas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_movrotativo' %}">Mov. Rotativo</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mensalista' %}">Mensalistas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mov_mensal' %}">Mov. Mensalistas</a></li>
+	      <li><hr class="dropdown-divider"></li>
+	      <li><a class="dropdown-item" href="#">Separated link</a></li>
+	    </ul>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" <a href="/admin/login/?next=/sistema/">Login</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Viculos</a>
+	  </li>
+	</ul>
+
+{% endblock %}
+
+{% block main %}
+	<h1> Lista Veiculos </h1>
+
+	<ul>
+		{% for veiculo in veiculos %}
+			<li>
+				<a href="{% url 'core_veiculo_update' veiculo.id %}">
+				  {{ veiculo.id }} | {{ veiculo.placa }} |
+				  {{ veiculo.proprietario }}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
 
 
-<form action="{% url 'core_veiculo_novo' %}" method="POST">
+	<form action="{% url 'core_veiculo_novo' %}" method="POST">
 
-	{% csrf_token %}
+		{% csrf_token %}
 
-	{{ form.as_p }}
+		{{ form.as_p }}
 
-	<button type="submit">Cadastrar</button>
-</form>
+		<button type="submit" class="btn btn-primary">Cadastrar</button>
+	</form>
 
-<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+	<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+
+{% endblock %}

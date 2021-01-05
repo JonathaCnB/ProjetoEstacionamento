@@ -1,11 +1,26 @@
-<h2>Updating Marca: {{ marcas.nome }}</h2>
+{% extends 'base.html' %}
+{% load bootstrap %}
 
-<form action="{% url 'core_marcas_update' marcas.id %}" method="POST">
-	{% csrf_token %}
 
-	{{ form.as_p }}
+{% block main %}
 
-	<button type="submit">Atualizar</button>
-</form>
+<div class="row">
+	<div class="col">
+		<h2>Updating Marca: {{ marcas.nome }}</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<form action="{% url 'core_marcas_update' marcas.id %}" method="POST">
+			{% csrf_token %}
 
-<a href="{% url 'core_marcas_delete' marcas.id %}">Deletar</a>
+			{{ form|bootstrap }}
+
+			<button type="submit" class="btn btn-primary">Atualizar</button>
+			<a href="{% url 'core_marcas_delete' marcas.id %}"
+		     class="btn btn-danger">Deletar</a>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

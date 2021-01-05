@@ -19,12 +19,15 @@ from .forms import (
 )
 
 
-def home(request):
-    context = {'mensagem': 'Ola mundo'}
-    # return render(request, 'core/index.html', context) essa opção não requer configuração do arquivo setting
-    # Apenas criar na pasta da app uma pasta /template/nomadaApp/
-    return render(request, 'base.html', context) # Essa opção esta puxando essa aquivo da pasta raiz chamada template
+def index(request):
+    return render(request, 'index2.html') # Essa opção esta puxando essa aquivo da pasta raiz chamada template
     # Porem precisa ser configurado no settins
+
+
+def home(request):
+    context = {'mensagem': 'Ola mundo'} #Nesse modelo uma url pode ser enviada para a html
+    return render(request, 'core/index.html', context) # essa opção não requer configuração do arquivo setting
+    # Apenas criar na pasta da app uma pasta /template/nomadaApp/
 
 
 def lista_pessoas(request):

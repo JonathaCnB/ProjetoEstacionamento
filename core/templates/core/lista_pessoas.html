@@ -1,21 +1,75 @@
-<h1>lista_pessoas</h1>
+{% extends 'base.html' %}
+{% load bootstrap %}
 
-<ul>
+{% block menu %}
 
-	{% for pessoa in pessoas %}
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link " aria-current="page" href="#">Home</a>
+	  </li>
+	  <li class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+	    <ul class="dropdown-menu">
+	      <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Viculos</a></li></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_marcas' %}">Marcas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_movrotativo' %}">Mov. Rotativo</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mensalista' %}">Mensalistas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mov_mensal' %}">Mov. Mensalistas</a></li>
+	      <li><hr class="dropdown-divider"></li>
+	      <li><a class="dropdown-item" href="#">Separated link</a></li>
+	    </ul>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" <a href="/admin/login/?next=/sistema/">Login</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Pessoas</a>
+	  </li>
+	</ul>
 
-		<li><a href="{% url 'core_pessoa_update' pessoa.id %}">{{ pessoa.id }} | {{ pessoa.nome }}</a></li>
+{% endblock %}
 
-	{% endfor %}
+{% block main %}
+	<div class="row">
+		<div class="col-sm-6 order-2">
 
-</ul>
+			<h1>Lista de Pessoas</h1>
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			      <th scope="col">ID</th>
+			      <th scope="col">Nome</th>
+			      <th scope="col">Endereco</th>
+			      <th scope="col">Telefone</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	{% for pessoa in pessoas %}
+				    <tr>
+				     <th scope="row"><a href="{% url 'core_pessoa_update' pessoa.id %}">{{ pessoa.id }}</a></th>
+				      <td><a href="{% url 'core_pessoa_update' pessoa.id %}">{{ pessoa.nome }}</a></td>
+				      <td><a href="{% url 'core_pessoa_update' pessoa.id %}">{{ pessoa.endereco }}</a></td>
+				      <td><a href="{% url 'core_pessoa_update' pessoa.id %}">{{ pessoa.telefone }}</a></td>
+				    </a></tr>
+			    {% endfor %}
+			  </tbody>
+			</table>
 
-<form action="{% url 'core_pessoa_novo' %}" method="POST">
-	{% csrf_token %}
 
-	{{ form.as_p }}
+		</div>
+		<div class="col-sm-6">
+			<h1>Cadastro</h1>
+			<form action="{% url 'core_pessoa_novo' %}" method="POST">
+				{% csrf_token %}
 
-	<button type="submit">Cadastrar</button>
-</form>
+				{{ form|bootstrap }}
 
-<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</form>
+		</div>
+	</div>
+
+	<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+
+{% endblock %}

@@ -1,19 +1,65 @@
-<h1>Lista de Marcas</h1>
+{% extends 'base.html' %}
+{% load bootstrap %}
 
-<ul>
-	{% for marca in marcas %}
-		<a href="{% url 'core_marcas_update' marca.id %}">
-			<li>{{ marca.nome }}</li>
-		</a>
-	{% endfor %}
-</ul>
 
-<form action="{% url 'core_marcas_novo' %}" method="POST">
-	{% csrf_token %}
+{% block menu %}
 
-	{{ form.as_p }}
+	<ul class="nav nav-tabs">
+	  <li class="nav-item">
+	    <a class="nav-link " aria-current="page" href="#">Home</a>
+	  </li>
+	  <li class="nav-item dropdown">
+	    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+	    <ul class="dropdown-menu">
+	      <li><a class="dropdown-item" href="{% url 'core_lista_pessoas' %}">Pessoas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_veiculos' %}">Viculos</a></li></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_marcas' %}">Marcas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_movrotativo' %}">Mov. Rotativo</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mensalista' %}">Mensalistas</a></li>
+	      <li><a class="dropdown-item" href="{% url 'core_lista_mov_mensal' %}">Mov. Mensalistas</a></li>
+	      <li><hr class="dropdown-divider"></li>
+	      <li><a class="dropdown-item" href="#">Separated link</a></li>
+	    </ul>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" <a href="/admin/login/?next=/sistema/">Login</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Marcas</a>
+	  </li>
+	</ul>
 
-	<button type="submit">Cadastrar</button>
-</form>
+{% endblock %}
 
-<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+{% block main %}
+
+
+<div class="row">
+	<div class="col">
+		<h1>Lista de Marcas</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-6">
+		<form action="{% url 'core_marcas_novo' %}" method="POST">
+			{% csrf_token %}
+
+			{{ form|bootstrap }}
+
+			<button type="submit" class="btn btn-primary">Cadastrar</button>
+		</form>
+	</div>
+	<div class="col-sm-6">
+		<ul>
+			{% for marca in marcas %}
+				<a href="{% url 'core_marcas_update' marca.id %}">
+					<li>{{ marca.nome }}</li>
+				</a>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+
+	<footer><li><a href="{% url 'core_home' %}">Incio</a></li></footer>
+
+{% endblock %}

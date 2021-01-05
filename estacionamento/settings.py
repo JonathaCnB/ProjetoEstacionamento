@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
     'core',
+    'website',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+LOGIN_URL = 'core_index'
+LOGIN_REDIRECT_URL = 'core_index'
+LOGOUT_REDIRECT_URL = 'core_index'

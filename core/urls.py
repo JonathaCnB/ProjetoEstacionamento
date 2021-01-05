@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import (
+    index,
     home,
     lista_pessoas,
     lista_marcas,
@@ -29,7 +30,8 @@ from .views import (
 
 
 urlpatterns = [
-    path('', home, name='core_home'),
+    path('', index, name='core_index'),
+    path('core/index.html', home, name='core_home'),
     path('pessoas/', lista_pessoas, name='core_lista_pessoas'),
     path('pessoas-novo/', pessoa_novo, name='core_pessoa_novo'),
     path('pessoa-update/<int:id>/', pessoa_update, name='core_pessoa_update'),
@@ -66,4 +68,5 @@ urlpatterns = [
          mov_mes_update, name='core_mov_mensal_update'),
     path('mov-mensal-delete/<int:id>/',
          mov_mes_delete, name='core_mov_mensal_delete'),
+
 ]
