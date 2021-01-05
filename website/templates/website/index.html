@@ -1,7 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'website/base.html' %}
+{% load static %}
+
+{% block title %} Index WebSite{% endblock %}
+
 {% block main %}
 
-	Pagina WebSite
-	<a href="{% url 'core_index' %}">Acesso ao sistema</a>
-
+    <div class="row">
+        <div class="col-sm-4">
+            <h1 class="row-space text-center mb-0 fs-1">Jonatha Carlos</h1>
+            <p class="row-space text-center fs-4 fw-bold">Full Stack Developer</p>
+        </div>
+        <div class="col-sm-8">
+            <img src="{% static 'img/logo.png' %}" class="img-fluid" alt="Logo da DSystem">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {% include 'website/menu.html' %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {% include 'website/footer.html' %}
+        </div>
+    </div>
 {% endblock %}
